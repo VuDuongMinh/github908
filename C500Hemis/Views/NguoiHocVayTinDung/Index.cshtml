@@ -1,0 +1,134 @@
+﻿@model IEnumerable<C500Hemis.Models.TbNguoiHocVayTinDung>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<head>
+    <!-- Import Bootstrap and JQuery-->
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--DataTables-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.1.7/css/dataTables.dataTables.css" />
+
+    <script type="text/javascript"
+            charset="utf8" src="https://cdn.datatables.net/2.1.7/js/dataTables.js"></script>
+    <!--My CSS anf JQuery-->
+    <link href="./css/style.css" rel="stylesheet" />
+</head>
+<style>
+       th{
+
+           color:black;
+           font-family:Arial, Helvetica, sans-serif;
+           font-size:large;
+
+       }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+           
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        p a {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+            p a:hover {
+                background-color: #218838;
+            }
+
+    th, td{
+        text-align:center;
+    }
+
+    table {
+        padding-bottom: 50px;
+    }
+</style>
+<h1>Người học vay tín dụng</h1>
+
+<p>
+    <a asp-action="Create">Tạo mới</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SoTienDuocVay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TenToChucTinDung)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NgayVay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiaChi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ThoiHanVay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdHocVienNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TinhTrangVayNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoTienDuocVay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenToChucTinDung)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayVay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiaChi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThoiHanVay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdHocVienNavigation.IdHocVien)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TinhTrangVayNavigation.IdTuyChon)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdNguoiHocVayTinDung">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdNguoiHocVayTinDung">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdNguoiHocVayTinDung">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<script>
+
+    // Khởi tạo DataTable từ dữ liệu đã được render bởi Razor
+    $('#users').DataTable();
+
+
+</script>
